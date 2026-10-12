@@ -31,12 +31,23 @@ ui <- page_sidebar(
         max = 100,
         value = c(0, 100)
       )
-    )
+    ),
+  textOutput('selected_var'),
+  testOutput('min_max')
     )
 
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
+  
+  output$selected_var <- renderText({
+    paste('You have selected', input$var)
+  })
+  
+  output$min_max <- renderText({
+    paste('You have chosen a range that goes from',
+          input$range[1], 'to', input$range[2])
+  })
 
 }
 
